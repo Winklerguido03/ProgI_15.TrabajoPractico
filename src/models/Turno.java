@@ -18,6 +18,18 @@ public class Turno {
     this.fecha=fecha;
   }
 
+  public Turno(Mascota mascota, Servicio servicio,LocalDate fecha){
+    this.mascota=mascota;
+    this.servicio=servicio;
+    this.fecha=fecha;
+  }
+
+  public Turno(Duenio duenio,LocalDate fecha){
+    this.duenio=duenio;
+    this.fecha=fecha;
+  }
+
+
   public void confirmarTurno(){
     System.out.println("Turno confirmado para "+mascota.getNombre()+" el "+fecha);
   }

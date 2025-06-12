@@ -36,36 +36,64 @@ public class Main {
     duenio5.agregarMascota(gato2);
 
     //SERVICIOS
-    Servicio servicio1 = new Banio();
-    Servicio servicio2 = new CortePelo();
-    Servicio servicio3 = new LimpiezaOidos();
-    Servicio servicio4 = new ComboCompleto();
+    Servicio servicioBanio = new Banio();
+    Servicio servicioCortePelo = new CortePelo();
+    Servicio servicioLimpiezaOidos = new LimpiezaOidos();
+    Servicio servicioComboCompleto = new ComboCompleto();
     Servicio servicio5 = new Banio();
 
     //TURNOS
     System.out.println("\nTurno 1:");
-    Turno turno1 = new Turno(perro1, duenio1, servicio1, LocalDate.of(2025, 6, 19));
+    Turno turno1 = new Turno(perro1, duenio1, servicioBanio, LocalDate.of(2025, 6, 19));
     turno1.confirmarTurno();
     turno1.mostrarDetalle();
 
     System.out.println("\nTurno 2:");
-    Turno turno2 = new Turno(perro2, duenio2, servicio2, LocalDate.of(2025, 7, 1));
+    Turno turno2 = new Turno(perro2, duenio2, servicioCortePelo, LocalDate.of(2025, 7, 1));
     turno2.confirmarTurno();
     turno2.mostrarDetalle();
 
-    Turno turno3 = new Turno(perro3, duenio3, servicio3, LocalDate.of(2025, 6, 18));
+    Turno turno3 = new Turno(perro3, duenio3, servicioLimpiezaOidos, LocalDate.of(2025, 6, 18));
     turno3.confirmarTurno();
     turno3.mostrarDetalle();
 
+    //APLICAR SERVICIOS Y MOSTRAR COSTOS
+    servicioBanio.aplicarServicio(perro1);
+    System.out.println("Precio del servicio:"+servicioBanio.calcularPrecio(perro1));
+    servicioCortePelo.aplicarServicio(perro1);
+    System.out.println("Precio del servicio:"+servicioCortePelo.calcularPrecio(perro1));
+    servicioLimpiezaOidos.aplicarServicio(perro1);
+    System.out.println("Precio del servicio:"+servicioLimpiezaOidos.calcularPrecio(perro1));
+    servicioComboCompleto.aplicarServicio(perro2);
+    System.out.println("Precio del servicio:"+servicioComboCompleto.calcularPrecio(perro2));
+
     //SOBRECARGA
-
-
+  Turno turnoViernes=new Turno(perro3,servicioCortePelo,LocalDate.of(2025,6,13));
+  Turno turnoMartes=new Turno(duenio1,LocalDate.of(2025,6,17));
 
     //SOBRESCRITURA
-    System.out.println("\nPerro1:");
-    perro1.mostrarFicha();
-    System.out.println("\nGato1:");
-    gato1.mostrarFicha();
+    System.out.println("Perro 1:");
+   perro1.mostrarFicha();
+    System.out.println("Perro 2:");
+   perro2.mostrarFicha();
+
+   //FINAL ID
+    System.out.println("\nPerro 1 id:"+perro1.getId());
+
+    //POLIMORFISMO CON INTERFAZ SERVICIO
+    Servicio[] servicios = {
+        new Banio(),
+        new CortePelo(),
+        new LimpiezaOidos(),
+        new ComboCompleto()
+    };
+
+    for (int i=0;i< servicios.length;i++){
+      servicios[i].aplicarServicio(perro1);
+      System.out.println("Costo: $" + servicios[i].calcularPrecio(perro1));
+      System.out.println("---------------------");
+    }
+
 
 
   }
